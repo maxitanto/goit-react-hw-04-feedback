@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css';
 
-export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+export function FeedbackOptions({ options, onLeaveFeedback }) {
+  const gradeList = Object.keys(options);
+
   return (
     <div className={css.wrapper}>
-      {options.map(option => {
+      {gradeList.map(option => {
         return (
           <button
             key={option}
@@ -18,9 +20,9 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
       })}
     </div>
   );
-};
+}
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  options: PropTypes.objectOf(PropTypes.number.isRequired).isRequired,
   onLeaveFeedback: PropTypes.func.isRequired,
 };
